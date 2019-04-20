@@ -1,0 +1,37 @@
+<application>
+  <component name="libraryTable">
+    <library name="canvas-nest" type="javaScript">
+      <properties>
+        <sourceFilesUrls>
+          <item url="file://$APPLICATION_CONFIG_DIR$/javascript/extLibs/__cdn.bootcss.com_canvas-nest.js_1.0.1_canvas-nest.js" />
+        </sourceFilesUrls>
+      </properties>
+      <CLASSES>
+        <root url="file://$APPLICATION_CONFIG_DIR$/javascript/extLibs/__cdn.bootcss.com_canvas-nest.js_1.0.1_canvas-nest.js" />
+      </CLASSES>
+      <SOURCES />
+    </library>
+    <library name="vue" type="javaScript">
+      <properties>
+        <sourceFilesUrls>
+          <item url="file://$APPLICATION_CONFIG_DIR$/javascript/extLibs/http_cdn.staticfile.org_vue_2.4.2_vue.js" />
+        </sourceFilesUrls>
+      </properties>
+      <CLASSES>
+        <root url="file://$APPLICATION_CONFIG_DIR$/javascript/extLibs/http_cdn.staticfile.org_vue_2.4.2_vue.js" />
+      </CLASSES>
+      <SOURCES />
+    </library>
+    <library name="vue-resource" type="javaScript">
+      <properties>
+        <sourceFilesUrls>
+          <item url="file://$APPLICATION_CONFIG_DIR$/javascript/extLibs/http_cdn.staticfile.org_vue-resource_1.5.1_vue-resource.js" />
+        </sourceFilesUrls>
+      </properties>
+      <CLASSES>
+        <root url="file://$APPLICATION_CONFIG_DIR$/javascript/extLibs/http_cdn.staticfile.org_vue-resource_1.5.1_vue-resource.js" />
+      </CLASSES>
+      <SOURCES />
+    </library>
+  </component>
+</application>
