@@ -6,96 +6,39 @@
             <Card/>
         </div>
         <div class="display">
-          <el-table :data="orders.filter(order => !search || String(order.orderID).includes(search))"
-                    ref="multipleTable"
-                    stripe
-                    style="width: 100%">
-            <el-table-column type="index" ></el-table-column>
-            <el-table-column type="expand">
-              <template slot-scope="scope">
-                <el-table :data="scope.row.orderItems"
-                          stripe
-                          border>
-                  <el-table-column prop="book.bookName" label="书名"></el-table-column>
-                  <el-table-column prop="book.author" label="作者"></el-table-column>
-                  <el-table-column prop="book.price" label="单价"></el-table-column>
-                  <el-table-column prop="amount" label="购买数量"></el-table-column>
-                </el-table>
-              </template>
-            </el-table-column>
-            <el-table-column label= '订单号' prop= 'orderID' sortable width="100%"></el-table-column>
-            <el-table-column label= '订单总价' prop= 'totPrice' sortable width="100%"></el-table-column>
-            <el-table-column label= '订单日期' prop= 'date' header-align="center" width="200%">
-              <template slot-scope="scope">
-                {{new Date(scope.row.date).format('yyyy-MM-dd hh:mm:ss')}}
-              </template>
-            </el-table-column>
-            <el-table-column align="right" >
-              <template slot="header" slot-scope="scope">
-                <el-input placeholder="请输入订单号" prefix-icon="el-icon-search"
-                          type="mini" v-model="search"></el-input>
-              </template>
-              <template slot-scope="scope">
-                <el-button type="danger" @click.native.prevent="deleteRow(scope.$index, orders)">删除</el-button>
-              </template>
-            </el-table-column>
-          </el-table>
+            <Table placeholder="请输入订单号"
+                   search-item="orderID"
+                   v-bind:table-column="[
+                    {label:'订单号',prop:'orderID'},
+                    {label:'书名',prop:'bookName'},
+                    {label:'买方',prop:'userName'},
+                    {label:'订单日期',prop:'date'},
+                    {label:'购买数量', prop:'sales'}
+                   ]"
+                   v-bind:table-data="[
+                    {orderID:'6273832823',userName:'你可真是个小机灵鬼',bookName:'写不完啊',date:'2019.3.23 14:32:33',sales:123},
+                    {orderID:'6273832824',userName:'皮皮皮',bookName:'太难了',date:'2019.3.23 14:43:33',sales:52},
+                    {orderID:'6273832832',userName:'虾',bookName:'真的好累',date:'2019.3.23 22:32:33',sales:532},
+                    {orderID:'6273832233',userName:'不好看',bookName:'真的好累',date:'2019.3.25 00:32:33',sales:132},
+                    {orderID:'6273832433',userName:'好好玩',bookName:'Died',date:'2019.4.1 10:32:33',sales:2},
+                    {orderID:'6273835433',userName:'写完了',bookName:'太难了',date:'2019.3.28 14:11:33',sales:188},
+                    {orderID:'1244322823',userName:'真棒',bookName:'Died',date:'2019.3.29 04:32:44',sales:65},
+                   ]"/>
         </div>
         <Footer/>
     </div>
 </template>
 
 <script>
-import Header from '../components/Header'
-import Menu from '../components/Menu'
-import Footer from '../components/Footer'
-import Table from '../components/Table'
-import Card from '../components/Card'
-export default {
-  name: 'Order',
-  data: function () {
-    return {
-      search: '',
-      orders: [{
-        orderID: null,
-        totPrice: null,
-        date: null,
-        orderItems: [{
-          book: {
-            bookName: null,
-            author: null,
-            price: null
-          },
-          amount: null
-        }]
-      }]
+    import Header from "../components/Header";
+    import Menu from "../components/Menu";
+    import Footer from "../components/Footer";
+    import Table from "../components/Table";
+    import Card from "../components/Card";
+    export default {
+        name: 'Order',
+        components: {Card, Table, Footer, Menu, Header},
     }
-  },
-  components: {Card, Table, Footer, Menu, Header},
-  methods: {
-    deleteRow (index, rows) {
-      this.$axios.delete('/order/delete/' + rows[index].orderID).then(function (response) {
-        console.log(response)
-      }).catch(function (response) {
-        console.log(response)
-      })
-      rows.splice(index, 1)
-    },
-    getOrders: function () {
-      this.$axios.get('/order/findAllOrder').then(function (response) {
-        console.log(response.data)
-        this.orders = response.data
-      }.bind(this))
-    }
-  },
-  created: function () {
-    if (!this.GLOBAL.login || this.GLOBAL.role !== 'admi') {
-      this.$message('为了更好地使用E-Book，请先登录哦~')
-      this.$router.push({path: '/login'})
-    }
-    this.getOrders()
-  }
-}
 </script>
 
 <style scoped>

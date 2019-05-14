@@ -1,5 +1,6 @@
 <template>
     <div class="navi">
+        <input style="up:-100%" type="button" @click="get()" :value="tip"/>
         <ul>
             <li v-on:click="select='热销书籍'"><router-link to="">热销书籍</router-link></li>
             <li v-on:click="select='小说传记'"><router-link to="">小说传记</router-link></li>
@@ -19,20 +20,31 @@
 </template>
 
 <script>
-export default {
-  name: 'Navi',
-  data: function () {
-    return {
-      select: '',
-      tip: ''
+    export default {
+        name: "Navi",
+        data:function () {
+            return{
+                select:'',
+                tip:''
+            }
+        },
+        watch:{
+            select:function () {
+                this.$emit('transfer',this.select)
+            }
+        },
+        methods:{
+            get:function () {
+                this.tip ="fs";
+                this.$axios.get("/BookInfo").then(function (response) {
+                    console.log(response);
+                }).catch(function (error) {
+                    alert("网络连接错误");
+                    console.log(error);
+                });
+            }
+        }
     }
-  },
-  watch: {
-    select: function () {
-      this.$emit('transfer', this.select)
-    }
-  }
-}
 </script>
 
 <style>

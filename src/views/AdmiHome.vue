@@ -3,59 +3,41 @@
         <Header welcome-message="Good Job!"/>
         <Menu type="admi"/>
         <Navi @transfer="getSelect"/>
-        <div class="display">
-          <el-input placeholder="请输入书名" prefix-icon="el-icon-search"
-                    style="width: 300px" v-model="query"></el-input>
-          <book-show v-bind:books = "books.filter(book => !books || book.bookName.includes(query))"/>
-        </div>
+        <book-show v-bind:books="books.filter(data=>!books || data.bookType.includes(select))"/>
         <Footer/>
     </div>
 </template>
 
 <script>
-import Header from '../components/Header'
-import Menu from '../components/Menu'
-import Navi from '../components/Navi'
-import BookShow from '../components/BookShow'
-import Footer from '../components/Footer'
+    import Header from "../components/Header";
+    import Menu from "../components/Menu";
+    import Navi from "../components/Navi";
+    import BookShow from "../components/BookShow";
+    import Footer from "../components/Footer";
+    export default {
+        name: "AdmiHome",
+        data:function(){
+            return{
+                select:'',
+                books: [{ bookType:"热销书籍 外文原版 科技科普 动漫卡通",bookName:'SoGood', bookPrice:'30RMB', pictureUrl:require('../assets/liulangdiqiu.jpg')},
+                    { bookType:"热销书籍 小说传记 心灵鸡汤",bookName:'好叭', bookPrice:'$3888', pictureUrl:require('../assets/liulangdiqiu.jpg')},
+                    { bookType:"热销书籍 育儿家教 期刊报纸",bookName:'Stupid', bookPrice:'￥34', pictureUrl:require('../assets/liulangdiqiu.jpg')},
+                    { bookType:"热销书籍 软件编程 育儿家教",bookName:'真的好累', bookPrice:'￥324', pictureUrl:require('../assets/liulangdiqiu.jpg')},
+                    { bookType:"热销书籍 小说传记 科技科普",bookName:'写不完啊', bookPrice:'$3328', pictureUrl:require('../assets/liulangdiqiu.jpg')},
+                    { bookType:"热销书籍 软件编程 外文原版 经管营销",bookName:'太难了', bookPrice:'$38', pictureUrl:require('../assets/liulangdiqiu.jpg')},
+                    { bookType:"热销书籍 哲学宗教 育儿家教",bookName:'Died', bookPrice:'$3', pictureUrl:require('../assets/liulangdiqiu.jpg')},
+                    { bookType:"热销书籍 软件编程 政治军事",bookName:'活下去', bookPrice:'$388', pictureUrl:require('../assets/liulangdiqiu.jpg')},
+                    { bookType:"热销书籍 期刊报纸 科技科普 教辅词典",bookName:'Meet Life', bookPrice:'$88', pictureUrl:require('../assets/liulangdiqiu.jpg')},]
+            }
+        },
+        components: {Footer, BookShow, Navi, Menu, Header},
+        methods:{
+            getSelect:function (select) {
+                this.select=select
+            }
+        }
 
-export default {
-  name: 'AdmiHome',
-  data: function () {
-    return {
-      query: '',
-      select: '热销书籍',
-      books: [{
-        bookID: Number,
-        bookName: String,
-        price: Number,
-        coverUrl: String,
-        typeName: String,
-        stock: 0
-      }]
     }
-  },
-  components: {Footer, BookShow, Navi, Menu, Header},
-  methods: {
-    getSelect: function (select) {
-      this.select = select
-      this.$axios.get('/book/findBookByType/' + this.select).then(function (response) {
-        console.log(response)
-        this.books = response.data
-      }.bind(this)).catch(function (error) {
-        alert('网络连接错误')
-        console.log(error)
-      })
-    }
-  },
-  created: function () {
-    if (!this.GLOBAL.login || this.GLOBAL.role !== 'admi') {
-      this.$message('为了更好地使用E-Book，请先登录哦~')
-      this.$router.push({path: '/login'})
-    }
-    this.getSelect(this.select)
-  }
-}
 </script>
 
 <style scoped>
