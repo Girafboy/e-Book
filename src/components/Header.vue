@@ -9,11 +9,11 @@
         <div v-else class = "nav">
           <router-link to="/login">Login</router-link> |
           <router-link to="/register">Register</router-link>
-        </div>
-    </div>
-</template>
-
-<script>
+  props: {
+    welcomeMessage: String
+  },
+  methods: {
+    logout: function () {
 export default {
   name: 'Header',
   props: {
@@ -31,9 +31,5 @@ export default {
     }
   }
 }
-</script>
-
-<style>
-    @import url("../users/style.css");
 
 </style>
