@@ -4,7 +4,6 @@ import com.example.girafboy.dao.BookDao;
 import com.example.girafboy.entity.Book;
 import com.example.girafboy.repository.BookRepository;
 import com.example.girafboy.repository.PictureRepository;
-import org.hibernate.mapping.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
