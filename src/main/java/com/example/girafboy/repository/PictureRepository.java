@@ -11,5 +11,4 @@ import java.util.List;
 public interface PictureRepository extends MongoRepository<Picture,String> {
     @Query("{ 'name' : ?0 }")
     Picture findByName(String name);
-
 }

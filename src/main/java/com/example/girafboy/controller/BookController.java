@@ -1,13 +1,10 @@
 package com.example.girafboy.controller;
 
 import com.example.girafboy.entity.Book;
-import com.example.girafboy.repository.BookRepository;
 import com.example.girafboy.service.BookService;
 import com.example.girafboy.service.PictrueService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
