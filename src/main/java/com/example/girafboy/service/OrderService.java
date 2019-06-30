@@ -9,6 +9,7 @@ import java.util.List;
 public interface OrderService {
     Order findOrderByID(Integer id);
     List<Order> findAllOrder(String userID);
+    List<Order> findAllOrder();
     Order addOrder(List<OrderItem> orderItems, String userID);
     Boolean deleteOrder(Integer id);
 }

@@ -9,4 +9,7 @@ public interface BookService {
     Book findBook(Integer id);
     List<Book> findBook();
     List<Book> findBook(String type);
+    Boolean modifyStock(Integer id, Integer amount);
+    Boolean modify(Book book);
+    Boolean deleteBook(Integer id);
 }
