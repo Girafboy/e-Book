@@ -10,6 +10,7 @@ import java.util.List;
 
 public interface OrderDao {
     Order findByID(Integer id);
+    List<Order> findAllOrder();
     Order findCartByUserID(String userID);
     List<Order> findByUserID(String id);
     List<Order> findByDate(Date date1, Date date2);

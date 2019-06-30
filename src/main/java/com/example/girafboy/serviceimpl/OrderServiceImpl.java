@@ -30,6 +30,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<Order> findAllOrder() {
+        return orderDao.findAllOrder();
+    }
+
+    @Override
     public Order addOrder(List<OrderItem> orderItems, String userID) {
         for (OrderItem item:orderItems)
             orderDao.deleteOrderItem(item.getId());

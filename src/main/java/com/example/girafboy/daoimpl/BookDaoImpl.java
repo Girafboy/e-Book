@@ -94,6 +94,4 @@ public class BookDaoImpl implements BookDao {
         bookRepository.deleteById(id);
         return true;
     }
-
-
 }

@@ -2,9 +2,7 @@ package com.example.girafboy.controller;
 
 import com.example.girafboy.entity.Book;
 import com.example.girafboy.service.BookService;
-import com.example.girafboy.service.PictrueService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,7 +13,6 @@ import java.util.List;
 public class BookController {
     @Autowired
     BookService bookService;
-    PictrueService pictrueService;
 
     @GetMapping("/findAllBook")
     public List<Book> findAllBook(){
@@ -32,9 +29,26 @@ public class BookController {
         return bookService.findBook(id);
     }
 
-    @GetMapping(value = "/picture/{name}",produces = {MediaType.IMAGE_JPEG_VALUE,MediaType.IMAGE_PNG_VALUE})
-    public byte[] getPictrue(@PathVariable String name){
-        return pictrueService.getPictureBlob(name);
+    @PutMapping("/modifyStock/{id}/{amount}")
+    public String modifyStock(@PathVariable("id")Integer id, @PathVariable("amount") Integer amount){
+        if(bookService.modifyStock(id, amount))
+            return "修改成功";
+        else
+            return "修改失败";
     }
 
+    @PutMapping("/modify")
+    public String modify(@RequestBody Book book){
+        if(bookService.modify(book))
+            return "修改成功";
+        else
+            return "修改失败";
+    }
+
+    @DeleteMapping("delete/{id}")
+    public String delete(@PathVariable Integer id){
+        if(bookService.deleteBook(id))
+            return "删除成功";
+        return "删除失败";
+    }
 }

@@ -1,8 +1,9 @@
 package com.example.girafboy.dao;
 
 import com.example.girafboy.entity.Picture;
+import org.bson.types.Binary;
 
 public interface PictureDao {
-    Picture findByName(String name);
-
+    Picture findById(String id);
+    Picture addPicture(String name, Binary content, String contentType, long size);
 }

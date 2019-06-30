@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
@@ -20,12 +22,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String login(User user) {
-        User user1 = userDao.findByIDAndPassWord(user.getUserID(),user.getPassword());
-        User user2 = userDao.findByID(user.getUserID());
-        if( user2 == null)
+        if(!userDao.isExist(user.getUserID()))
             return "NOT_FOUND";
-        else if(user1 == null)
+
+        User user1 = userDao.findByIDAndPassWord(user.getUserID(),user.getPassword());
+        if(user1 == null)
             return "WRONG_PASSWORD";
+        else if(userDao.isForbidden(user1))
+            return "FORBIDDEN";
         else if(userDao.isAdmi(user1))
             return "ADMI";
         else
@@ -35,5 +39,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public User addUser(User user) {
         return userDao.addUser(user.getUserID(), user.getPassword(),"user","正常",user.getEmail());
+    }
+
+    @Override
+    public List<User> findAllUser() {
+        return userDao.findAllUser();
+    }
+
+    @Override
+    public Boolean forbid(String id) {
+        if (userDao.isForbidden(userDao.findByID(id))) {
+            userDao.updateUser(id, null, null, "正常", null);
+            return false;
+        } else {
+            userDao.updateUser(id, null, null, "禁用", null);
+            return true;
+        }
     }
 }
