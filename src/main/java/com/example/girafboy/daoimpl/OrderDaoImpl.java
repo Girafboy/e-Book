@@ -34,6 +34,11 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
+    public List<Order> findAllOrder() {
+        return orderRepository.findOrdersByState("paid");
+    }
+
+    @Override
     public Order findCartByUserID(String userID) {
         List<Order> orders = userRepository.getOne(userID).getOrders();
         for (Order o:orders)

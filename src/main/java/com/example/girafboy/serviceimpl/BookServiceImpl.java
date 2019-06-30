@@ -27,4 +27,29 @@ public class BookServiceImpl implements BookService {
     public List<Book> findBook(String type) {
         return bookDao.findByType(type);
     }
+
+    @Override
+    public Boolean modifyStock(Integer id, Integer amount) {
+        if(bookDao.findByID(id) == null)
+            return false;
+        bookDao.modifyBook(id,null,null,null,null,null, amount,null);
+        return true;
+    }
+
+    @Override
+    public Boolean modify(Book book) {
+        return bookDao.modifyBook(book.getBookID(),
+                book.getBookName(),
+                book.getAuthor(),
+                book.getCoverUrl(),
+                book.getISBN(),
+                book.getPrice(),
+                book.getStock(),
+                book.getDescription());
+    }
+
+    @Override
+    public Boolean deleteBook(Integer id) {
+        return bookDao.deleteBook(id);
+    }
 }
