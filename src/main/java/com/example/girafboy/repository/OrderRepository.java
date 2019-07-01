@@ -1,6 +1,7 @@
 package com.example.girafboy.repository;
 
 import com.example.girafboy.entity.Order;
+import com.example.girafboy.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -9,5 +10,6 @@ import java.util.List;
 
 public interface OrderRepository extends JpaRepository<Order, Integer> {
     List<Order> findOrdersByDateBetween(Date date1, Date date2);
+    List<Order> findOrdersByDateBetweenAndUser(Date date1, Date date2, User user);
     List<Order> findOrdersByState(String state);
 }
