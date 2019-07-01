@@ -14,6 +14,7 @@ public interface OrderDao {
     Order findCartByUserID(String userID);
     List<Order> findByUserID(String id);
     List<Order> findByDate(Date date1, Date date2);
+    List<Order> findByDateAndUser(Date date1, Date date2, String userID);
     Order addOrder(String userID, Date date, String state);
     OrderItem addOrderItem(Integer id, Integer bookID, Integer amount);
     Boolean updateOrder(Integer id, Date date, String state);
