@@ -24,7 +24,7 @@ export default new Router({
     {
       path: '/Setting',
       name: 'setting',
-      component: () => import('../views/Setting.vue')
+      component: () => import('../views/Statistic.vue')
     },
     {
       path: '/Cart',
@@ -64,7 +64,7 @@ export default new Router({
     {
       path: '/admisetting',
       name: 'admisetting',
-      component: () => import(/* webpackChunkName: "about" */ '../views/AdmiSetting.vue')
+      component: () => import(/* webpackChunkName: "about" */ '../views/AdmiStatistic.vue')
     },
     {
       path: '/picture',

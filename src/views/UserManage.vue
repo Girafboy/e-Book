@@ -6,7 +6,7 @@
             <Card/>
         </div>
         <div class="display">
-          <el-table :data="users.filter( user=> !search || user.userID.includes(search))"
+          <el-table :data="users.filter( user => !search || user.userID.includes(search))"
                     ref="multipleTable"
                     stripe
                     style="width: 100%">
@@ -17,7 +17,7 @@
             <el-table-column label= '邮箱' prop= 'email' header-align="center" width="150%"></el-table-column>
             <el-table-column align="right" >
               <template slot="header" slot-scope="scope">
-                <el-input placeholder="请输入订单号" prefix-icon="el-icon-search"
+                <el-input placeholder="请输入用户名" prefix-icon="el-icon-search"
                           type="mini" v-model="search"></el-input>
               </template>
               <template slot-scope="scope">
