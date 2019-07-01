@@ -12,7 +12,7 @@
             <li><router-link style="width: 180px" to="/warehouse">仓库</router-link></li>
             <li><router-link style="width: 180px" to="/usermanage">用户管理</router-link></li>
             <li><router-link style="width: 180px" to="/admiorder">订单管理</router-link></li>
-            <li><router-link style="width: 180px" to="/admisetting">个人设置</router-link></li>
+            <li><router-link style="width: 180px" to="/admisetting">数据统计</router-link></li>
         </ul>
     </div>
 </template>
