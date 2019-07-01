@@ -6,7 +6,7 @@
             <Card/>
         </div>
         <div class="display">
-          <el-table :data="orders.filter( order=> !search || order.orderID.includes(search))"
+          <el-table :data="orders.filter(order => !search || String(order.orderID).includes(search))"
                     ref="multipleTable"
                     stripe
                     style="width: 100%">

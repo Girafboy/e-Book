@@ -125,12 +125,6 @@ export default {
       }).catch(response => {
         console.log(response)
       })
-      this.$axios.post('/picture/upload/' + this.bookName, formData,
-        {headers: {'Content-Type': 'multipart/form-data'}}).then(response => {
-        console.log(response)
-      }).catch(response => {
-        console.log(response)
-      })
     },
     handleDelete (index, rows) {
       this.$axios.delete('/book/delete/' + rows[index].bookID).then(function (response) {

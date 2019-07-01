@@ -6,7 +6,7 @@
     <div class="display">
       <el-input placeholder="请输入书名" prefix-icon="el-icon-search"
                 style="width: 300px" v-model="query"></el-input>
-      <book-show v-bind:books = "books.filter(book => !books || book.bookName.includes(query))"/>
+      <book-show :books = "books.filter(book => !query || book.bookName.includes(query))"/>
     </div>
     <Footer/>
   </div>
