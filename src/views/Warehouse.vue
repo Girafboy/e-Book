@@ -19,7 +19,7 @@
                   <el-form-item label="">
                     <div class="book" style="margin: 5px"><img :src="scope.row.coverUrl" alt="封面" width="10%"/></div>
                     <input v-if="showEdit[scope.$index]" type="file" @change="getFile($event,scope.$index)" style="width: 200px; font-size: xx-small"/>
-                    <button v-if="showEdit[scope.$index]" @click="upload($event,scope.$index)">提交</button>
+                    <button v-if="showEdit[scope.$index]" @click.prevent="upload($event,scope.$index)">提交</button>
                   </el-form-item>
                   <el-form-item label="内容简介" >
                     <el-input v-if="showEdit[scope.$index]" type="textarea" v-model="scope.row.description" :rows="12"/>
