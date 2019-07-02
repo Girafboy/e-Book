@@ -15,6 +15,11 @@ public class LoginController {
     @Autowired
     UserService userService;
 
+    @RequestMapping("/welcome")
+    public String welcome(){
+        return "Welcome to eBook! Please login.";
+    }
+
     @PostMapping("/login")
     public String login(HttpServletRequest request,@RequestBody User user){
         String state = userService.login(user);

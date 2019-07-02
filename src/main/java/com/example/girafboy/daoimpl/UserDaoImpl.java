@@ -16,7 +16,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> findAllUser() {
-        return userRepository.findAll();
+        return userRepository.findUsersByRole("user");
     }
 
     @Override
