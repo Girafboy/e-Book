@@ -45,10 +45,17 @@ public class BookController {
             return "修改失败";
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String delete(@PathVariable Integer id){
         if(bookService.deleteBook(id))
             return "删除成功";
         return "删除失败";
+    }
+
+    @PostMapping("/addBook")
+    public String addBook(@RequestBody Book book){
+        if(bookService.addBook(book))
+            return "添加成功";
+        return "添加失败";
     }
 }

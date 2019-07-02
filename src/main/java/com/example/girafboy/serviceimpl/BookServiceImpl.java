@@ -52,4 +52,12 @@ public class BookServiceImpl implements BookService {
     public Boolean deleteBook(Integer id) {
         return bookDao.deleteBook(id);
     }
+
+    @Override
+    public Boolean addBook(Book book) {
+        return bookDao.addBook(book.getBookName(),
+                book.getAuthor(), book.getCoverUrl(),
+                book.getISBN(), book.getPrice(),
+                book.getStock(),book.getDescription()) != null;
+    }
 }
