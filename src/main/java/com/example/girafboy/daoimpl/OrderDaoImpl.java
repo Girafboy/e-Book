@@ -60,12 +60,12 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public List<Order> findByDate(Date date1, Date date2) {
-        return orderRepository.findOrdersByDateBetween(date1,date2);
+        return orderRepository.findOrdersByDateBetweenAndState(date1,date2,"paid");
     }
 
     @Override
     public List<Order> findByDateAndUser(Date date1, Date date2, String userID) {
-        return orderRepository.findOrdersByDateBetweenAndUser(date1,date2,userRepository.getOne(userID));
+        return orderRepository.findOrdersByDateBetweenAndUserAndState(date1,date2,userRepository.getOne(userID),"paid");
     }
 
     @Override
