@@ -21,6 +21,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Boolean existUser(String id) {
+        return userDao.isExist(id);
+    }
+
+    @Override
     public String login(User user) {
         if(!userDao.isExist(user.getUserID()))
             return "NOT_FOUND";

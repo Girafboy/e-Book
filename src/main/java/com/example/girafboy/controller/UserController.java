@@ -19,6 +19,11 @@ public class UserController {
         return userService.findUserByID(id);
     }
 
+    @GetMapping("/existUser/{id}")
+    public Boolean existUser(@PathVariable String id){
+        return userService.existUser(id);
+    }
+
     @PostMapping("/addUser")
     public User addUser(@RequestBody User user){
         return userService.addUser(user);
