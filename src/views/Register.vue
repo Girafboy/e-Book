@@ -50,7 +50,7 @@ export default {
       } else {
         this.$axios.get('/user/existUser/' + newname).then(function (response) {
           console.log(response)
-          if (response.data.userID !== newname) {
+          if (response.data === false) {
             this.warning = '用户名通过啦'
           } else {
             this.warning = '用户名存在'
