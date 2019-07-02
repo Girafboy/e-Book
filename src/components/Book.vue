@@ -1,6 +1,22 @@
 <template>
     <div class="book">
-        <router-link to="/detail"><img :src="pictureUrl"></router-link>
+        <el-popover
+          placement="top-start"
+          title="本书详情"
+          width="200"
+          trigger="hover">
+          <ul>
+            <li><b>书名：</b><span>{{bookName}}</span></li>
+            <li><b>作者：</b><span>{{author}}</span></li>
+            <li><b>ISBN编号：</b><span>{{ISBN}}</span></li>
+            <li><b>库存：</b><span>{{stock}}</span></li>
+            <li><b>定价：</b><span>{{bookPrice}}元</span></li>
+            <li><b>内容描述：</b><span>{{description}}</span></li>
+          </ul>
+          <el-button slot="reference" style="padding: 0">
+            <router-link to="/detail"><img :src="pictureUrl"></router-link>
+          </el-button>
+        </el-popover>
         <ul>
           <li><router-link :to="{name:'detail',params:{bookID: bookId}}" ><h2 class="bookName" >{{bookName}}</h2></router-link></li>
           <li><router-link :to="{name:'detail',params:{bookID: bookId}}" ><h3 class="price" >￥ {{bookPrice}}</h3></router-link></li>
@@ -37,7 +53,10 @@ export default {
     bookName: String,
     bookPrice: Number,
     pictureUrl: String,
-    stock: Number
+    stock: Number,
+    description: String,
+    ISBN: String,
+    author: String
   },
   methods: {
     addCart: function () {
