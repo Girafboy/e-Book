@@ -43,10 +43,10 @@
                 </el-form>
               </template>
             </el-table-column>
-            <el-table-column label="书名" prop="book.bookName"></el-table-column>
-            <el-table-column label="ISBN编号" prop="book.ISBN"></el-table-column>
-            <el-table-column label="单价" prop="book.price"></el-table-column>
-            <el-table-column label="销量" prop="sales"></el-table-column>
+            <el-table-column label="书名" prop="book.bookName" sortable></el-table-column>
+            <el-table-column label="ISBN编号" prop="book.ISBN" sortable></el-table-column>
+            <el-table-column label="单价" prop="book.price" sortable></el-table-column>
+            <el-table-column label="销量" prop="sales" sortable></el-table-column>
           </el-table>
           <el-table v-if="radio==='用户消费统计'" :data="userStatistic"
                     ref="multipleTable"
@@ -66,9 +66,9 @@
                 </el-table>
               </template>
             </el-table-column>
-            <el-table-column label="用户名" prop="user.userID"></el-table-column>
-            <el-table-column label="购买书籍总数" prop="buys"></el-table-column>
-            <el-table-column label="购买书籍总花费" prop="costs"></el-table-column>
+            <el-table-column label="用户名" prop="user.userID" sortable></el-table-column>
+            <el-table-column label="购买书籍总数" prop="buys" sortable></el-table-column>
+            <el-table-column label="购买书籍总花费" prop="costs" sortable></el-table-column>
           </el-table>
         </div>
         <Footer/>
@@ -146,6 +146,12 @@ export default {
         console.log(response)
         this.userStatistic = response.data
       }.bind(this))
+    }
+  },
+  created () {
+    if (!this.GLOBAL.login || this.GLOBAL.role !== 'admi') {
+      this.$message('为了更好地使用E-Book，请先登录哦~')
+      this.$router.push({path: '/login'})
     }
   }
 }

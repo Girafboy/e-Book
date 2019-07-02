@@ -14,14 +14,14 @@
             <li><b>内容描述：</b><span>{{description}}</span></li>
           </ul>
           <el-button slot="reference" style="padding: 0">
-            <router-link to="/detail"><img :src="pictureUrl"></router-link>
+            <img :src="pictureUrl">
+            <ul>
+              <li><router-link to=""><h2 class="bookName" >{{bookName}}</h2></router-link></li>
+              <li><router-link to=""><h3 class="price" >￥ {{bookPrice}}</h3></router-link></li>
+              <el-button text="" @click="dialogVisible=true">加入购物车</el-button>
+            </ul>
           </el-button>
         </el-popover>
-        <ul>
-          <li><router-link :to="{name:'detail',params:{bookID: bookId}}" ><h2 class="bookName" >{{bookName}}</h2></router-link></li>
-          <li><router-link :to="{name:'detail',params:{bookID: bookId}}" ><h3 class="price" >￥ {{bookPrice}}</h3></router-link></li>
-          <el-button @click="dialogVisible=true">加入购物车</el-button>
-        </ul>
         <el-dialog title="加入购物车" :visible.sync="dialogVisible"
                  width="30%">
           <template v-if="stock!==0">
@@ -49,14 +49,14 @@ export default {
     }
   },
   props: {
-    bookId: Number,
-    bookName: String,
-    bookPrice: Number,
-    pictureUrl: String,
-    stock: Number,
-    description: String,
-    ISBN: String,
-    author: String
+    bookId: '',
+    bookName: '',
+    bookPrice: 0,
+    pictureUrl: '',
+    stock: 0,
+    description: '',
+    ISBN: '',
+    author: ''
   },
   methods: {
     addCart: function () {

@@ -68,6 +68,10 @@ export default {
     }
   },
   created () {
+    if (!this.GLOBAL.login || this.GLOBAL.role !== 'admi') {
+      this.$message('为了更好地使用E-Book，请先登录哦~')
+      this.$router.push({path: '/login'})
+    }
     this.getUsers()
   }
 }
