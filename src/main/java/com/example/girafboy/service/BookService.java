@@ -12,4 +12,5 @@ public interface BookService {
     Boolean modifyStock(Integer id, Integer amount);
     Boolean modify(Book book);
     Boolean deleteBook(Integer id);
+    Boolean addBook(Book book);
 }
