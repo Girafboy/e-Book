@@ -48,7 +48,7 @@ export default {
       if (newname == null || newname === '') {
         this.warning = '请输入用户名'
       } else {
-        this.$axios.get('/user/findUser/' + newname).then(function (response) {
+        this.$axios.get('/user/existUser/' + newname).then(function (response) {
           console.log(response)
           if (response.data.userID !== newname) {
             this.warning = '用户名通过啦'
@@ -100,19 +100,29 @@ export default {
       } else if (this.password !== this.bi_password) {
         this.warning = '两次密码输入不相同'
       } else {
-        let verify = confirm('您即将注册用户名为 ' + this.username + ' 的账号！')
-        if (verify) {
-          this.$router.push({path: '/login'})
-          this.$axios.post('/user/addUser', {
-            userID: this.username,
-            password: this.password,
-            email: this.mail
-          }).then(function (response) {
-            console.log(response)
-          }).catch(function (error) {
-            console.log(error)
-          })
-        }
+        this.$axios.get('/user/existUser/' + this.username).then(function (response) {
+          console.log(response)
+          if (response.data === true) {
+            this.warning = '用户名存在'
+            return
+          }
+          this.registerSuccess()
+        }.bind(this))
+      }
+    },
+    registerSuccess: function () {
+      let verify = confirm('您即将注册用户名为 ' + this.username + ' 的账号！')
+      if (verify) {
+        this.$router.push({path: '/login'})
+        this.$axios.post('/user/addUser', {
+          userID: this.username,
+          password: this.password,
+          email: this.mail
+        }).then(function (response) {
+          console.log(response)
+        }).catch(function (error) {
+          console.log(error)
+        })
       }
     }
   }

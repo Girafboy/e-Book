@@ -23,11 +23,11 @@
                 </el-table>
               </template>
             </el-table-column>
-            <el-table-column label= '订单号' prop= 'orderID' sortable width="150%"></el-table-column>
+            <el-table-column label= '订单号' prop= 'orderID' sortable width="100%"></el-table-column>
             <el-table-column label= '订单总价' prop= 'totPrice' sortable width="100%"></el-table-column>
-            <el-table-column label= '订单日期' prop= 'date' header-align="center" width="150%">
+            <el-table-column label= '订单日期' prop= 'date' header-align="center" width="200%">
               <template slot-scope="scope">
-                {{scope.row.date}}
+                {{new Date(scope.row.date).format('yyyy-MM-dd hh:mm:ss')}}
               </template>
             </el-table-column>
             <el-table-column align="right" >
@@ -89,6 +89,10 @@ export default {
     }
   },
   created: function () {
+    if (!this.GLOBAL.login || this.GLOBAL.role !== 'admi') {
+      this.$message('为了更好地使用E-Book，请先登录哦~')
+      this.$router.push({path: '/login'})
+    }
     this.getOrders()
   }
 }

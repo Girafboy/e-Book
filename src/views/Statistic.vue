@@ -38,10 +38,10 @@
                   </el-form>
                 </template>
               </el-table-column>
-              <el-table-column label="书名" prop="book.bookName"></el-table-column>
-              <el-table-column label="ISBN编号" prop="book.ISBN"></el-table-column>
-              <el-table-column label="单价" prop="book.price"></el-table-column>
-              <el-table-column label="购买数量" prop="sales"></el-table-column>
+              <el-table-column label="书名" prop="book.bookName" sortable></el-table-column>
+              <el-table-column label="ISBN编号" prop="book.ISBN" sortable></el-table-column>
+              <el-table-column label="单价" prop="book.price" sortable></el-table-column>
+              <el-table-column label="购买数量" prop="sales" sortable></el-table-column>
             </el-table>
           </div>
         </div>
@@ -85,6 +85,12 @@ export default {
         console.log(response)
         this.bookStatistic = response.data
       }.bind(this))
+    }
+  },
+  created () {
+    if (!this.GLOBAL.login || this.GLOBAL.role !== 'user') {
+      this.$message('为了更好地使用E-Book，请先登录哦~')
+      this.$router.push({path: '/login'})
     }
   }
 }
