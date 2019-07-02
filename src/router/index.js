@@ -17,11 +17,6 @@ export default new Router({
       component: () => import('../views/Register.vue')
     },
     {
-      path: '/Detail',
-      name: 'detail',
-      component: () => import('../views/Detail.vue')
-    },
-    {
       path: '/Setting',
       name: 'setting',
       component: () => import('../views/Statistic.vue')

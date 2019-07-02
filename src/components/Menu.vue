@@ -5,7 +5,7 @@
             <li><router-link to="/">主页</router-link></li>
             <li><router-link to="/cart">购物车</router-link></li>
             <li><router-link to="/order">我的订单</router-link></li>
-            <li><router-link to="/setting">个人设置</router-link></li>
+            <li><router-link to="/setting">购书统计</router-link></li>
         </ul>
         <ul v-if="type === 'admi'" >
             <li><router-link style="width: 180px" to="/admihome">主页</router-link></li>

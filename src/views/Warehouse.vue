@@ -6,7 +6,7 @@
             <Card/>
         </div>
         <div class="display">
-          <el-table :data="books"
+          <el-table :data="books.filter(book => !search || book.bookName.includes(search))"
                     ref="multipleTable"
                     stripe
                     style="width: 100%">
@@ -83,6 +83,7 @@ export default {
   name: 'Warehouse',
   data: function () {
     return {
+      search: '',
       showEdit: [],
       showBtn: [],
       file: [],
@@ -160,12 +161,17 @@ export default {
       this.books.push(this.newbook)
       this.$axios.post('/book/addBook', this.books[this.books.length - 1]).then(response => {
         console.log(response)
+        this.getBook()
       })
       this.$set(this.showBtn, this.books.length - 1, true)
       this.$set(this.showEdit, this.books.length - 1, true)
     }
   },
   created: function () {
+    if (!this.GLOBAL.login || this.GLOBAL.role !== 'admi') {
+      this.$message('为了更好地使用E-Book，请先登录哦~')
+      this.$router.push({path: '/login'})
+    }
     this.getBook()
   }
 }

@@ -22,6 +22,8 @@ export default {
   methods: {
     logout: function () {
       this.GLOBAL.login = false
+      this.GLOBAL.userID = ''
+      this.GLOBAL.role = 'user'
       this.$router.push('/login')
       this.$axios.get('/logout').then(response => {
         if (response.data === 'LOGOUT') { alert('退出成功') }
