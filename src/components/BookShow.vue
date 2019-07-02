@@ -7,7 +7,10 @@
                     v-bind:book-price="book.price"
                     v-bind:picture-url="book.coverUrl"
                     v-bind:stock="book.stock"
+                    v-bind:description="book.description"
                     v-bind:key="book.id"
+                    v-bind:i-s-b-n="book.ISBN"
+                    v-bind:author="book.author"
             ></book>
         </div>
 </template>

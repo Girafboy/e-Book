@@ -12,7 +12,7 @@
                     style="width: 100%">
             <el-table-column type="expand" width="100px">
               <template slot="header" slot-scope="scope">
-                <el-button type="primary" size="small" @click.native.prevent="(showAdd=true) && books.push(newbook)">新增</el-button>
+                <el-button type="primary" size="small" @click.native.prevent="addBook">新增</el-button>
               </template>
               <template slot-scope="scope">
                 <el-form label-position="left" inline class="demo-table-expand">
@@ -86,7 +86,6 @@ export default {
       showEdit: [],
       showBtn: [],
       file: [],
-      showAdd: false,
       books: [{
         bookID: '',
         bookName: '',
@@ -156,6 +155,14 @@ export default {
       }).catch(response => {
         console.log(response)
       })
+    },
+    addBook: function () {
+      this.books.push(this.newbook)
+      this.$axios.post('/book/addBook', this.books[this.books.length - 1]).then(response => {
+        console.log(response)
+      })
+      this.$set(this.showBtn, this.books.length - 1, true)
+      this.$set(this.showEdit, this.books.length - 1, true)
     }
   },
   created: function () {
